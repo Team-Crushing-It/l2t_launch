@@ -7,8 +7,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:l2t_launch/counter/counter.dart';
-import 'package:l2t_launch/l10n/l10n.dart';
+import '../../extensions.dart';
+
+import '../../l10n/l10n.dart';
+import '../counter.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -35,14 +37,14 @@ class CounterView extends StatelessWidget {
         children: [
           FloatingActionButton(
             key: const Key('counterView_increment_floatingActionButton'),
-            child: const Icon(Icons.add),
             onPressed: () => context.read<CounterCubit>().increment(),
+            child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
             key: const Key('counterView_decrement_floatingActionButton'),
-            child: const Icon(Icons.remove),
             onPressed: () => context.read<CounterCubit>().decrement(),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),
@@ -55,8 +57,7 @@ class CounterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final count = context.select((CounterCubit cubit) => cubit.state);
-    return Text('$count', style: theme.textTheme.headline1);
+    return Text('$count', style: context.theme.textTheme.headline1);
   }
 }

@@ -8,10 +8,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/widgets.dart';
 import 'package:bloc/bloc.dart';
-import 'package:l2t_launch/app/app.dart';
-import 'package:l2t_launch/app/app_bloc_observer.dart';
+import 'package:flutter/widgets.dart';
+import 'app/app.dart';
+import 'app/app_bloc_observer.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
