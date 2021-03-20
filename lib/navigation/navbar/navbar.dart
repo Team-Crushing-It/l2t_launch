@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_launch/authentication/authentication.dart';
 import 'package:l2t_launch/login/login.dart';
 import 'package:l2t_launch/login_flow/login_flow.dart';
+import 'coinflip.dart';
 
 import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
@@ -43,33 +44,7 @@ class _NavBarViewState extends State<NavBarView> {
         ? AppBar(
             title: const Text('Auth'),
             actions: <Widget>[
-              IconButton(
-                color: widget.stateNav == NavigationState.home
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.home_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().home(),
-                },
-              ),
-              IconButton(
-                color: widget.stateNav == NavigationState.learn
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.access_alarm_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().page1(),
-                },
-              ),
-              IconButton(
-                color: widget.stateNav == NavigationState.page2
-                    ? Colors.red
-                    : Colors.black,
-                icon: const Icon(Icons.ac_unit_outlined),
-                onPressed: () => {
-                  context.read<NavigationCubit>().page2(),
-                },
-              ),
+              CoinFlip(),
               IconButton(
                 key: const Key('homePage_logout_iconButton'),
                 icon: const Icon(Icons.exit_to_app),
