@@ -81,55 +81,41 @@ class _NavBarViewState extends State<NavBarView> {
           )
         // UnAuthenticaed NavBar ====================================
         : AppBar(
-            title: Row(
-              children: [
-                HoverLogo(
-                  onTap: () => context.read<NavigationCubit>().home(),
-                  visible:
-                      // ignore: avoid_bool_literals_in_conditional_expressions
-                      widget.stateNav == NavigationState.home ? false : true,
-                ),
-              ],
+            title: HoverLogo(
+              onTap: () => context.read<NavigationCubit>().home(),
+              visible:
+                  // ignore: avoid_bool_literals_in_conditional_expressions
+                  widget.stateNav == NavigationState.home ? false : true,
             ),
             actions: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue,
+                  ),
                   onPressed: () async {
-                    // await Navigator.of(context).push<LoginState>(
-                    //   LoginFlow.route(),
-                    // );
-                    Navigator.of(context).pushNamed('/signup');
-                    // ScaffoldMessenger.of(context)
-                    //   ..hideCurrentSnackBar()
-                    //   ..showSnackBar(
-                    //     const SnackBar(
-                    //       content: Text('Login Flow Complete!'),
-                    //     ),
-                    //   );
+                    Navigator.of(context).pushNamed('/login');
                   },
-                  child: const Text('Sign-up',
-                      style: (TextStyle(color: Colors.white))),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
                   onPressed: () async {
-                    // await Navigator.of(context).push<LoginState>(
-                    //   LoginFlow.route(),
-                    // );
-                    Navigator.of(context).pushNamed('/login');
-                    // ScaffoldMessenger.of(context)
-                    //   ..hideCurrentSnackBar()
-                    //   ..showSnackBar(
-                    //     const SnackBar(
-                    //       content: Text('Login Flow Complete!'),
-                    //     ),
-                    //   );
+                    Navigator.of(context).pushNamed('/signup');
                   },
-                  child: const Text('Login',
-                      style: (TextStyle(color: Colors.white))),
+                  child: const Text(
+                    'Sign-up',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
