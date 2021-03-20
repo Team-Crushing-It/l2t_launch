@@ -7,7 +7,7 @@ import 'package:l2t_launch/login_flow/login_flow.dart';
 import 'package:l2t_launch/navigation/navbar/help/help_dropdown.dart';
 import 'package:l2t_launch/navigation/navbar/user_balance.dart';
 
-import 'coinflip.dart';
+import 'user_info.dart';
 
 import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
@@ -48,61 +48,37 @@ class _NavBarViewState extends State<NavBarView> {
         // true
         widget.statusAuth == AuthenticationStatus.authenticated
             ? AppBar(
-                title: Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.1),
-                  child: HoverLogo(
-                    onTap: () => context.read<NavigationCubit>().home(),
-                    visible:
-                        // ignore: avoid_bool_literals_in_conditional_expressions
-                        widget.stateNav == NavigationState.home ? false : true,
-                  ),
+                title: HoverLogo(
+                  onTap: () => {},
+                  visible: true,
                 ),
                 actions: <Widget>[
                   //? Can anyone get this working?
                   // HelpDropdown(),
-                  IconButton(
-                    icon: const Icon(Icons.person),
-                    onPressed: () {
-                      // Open user profile page
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: UserInfo(),
                   ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  const UserBalance(3),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
+
                   IconButton(
                     icon: const Icon(Icons.inbox),
                     onPressed: () {
                       // Open inbox dropdown
                     },
                   ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
+
                   IconButton(
                     icon: const Icon(Icons.star),
                     onPressed: () {
                       // Open help menu
                     },
                   ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
+
                   IconButton(
                     icon: const Icon(Icons.help),
                     onPressed: () {
                       // Open help menu
                     },
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
                   ),
 
                   IconButton(
@@ -118,10 +94,8 @@ class _NavBarViewState extends State<NavBarView> {
             // UnAuthenticaed NavBar ====================================
             : AppBar(
                 title: HoverLogo(
-                  onTap: () => context.read<NavigationCubit>().home(),
-                  visible:
-                      // ignore: avoid_bool_literals_in_conditional_expressions
-                      widget.stateNav == NavigationState.home ? false : true,
+                  onTap: () => {},
+                  visible: true,
                 ),
                 actions: [
                   Padding(

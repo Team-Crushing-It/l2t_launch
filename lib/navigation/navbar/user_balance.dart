@@ -8,8 +8,14 @@ class UserBalance extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(userBalance.toString()),
-        SizedBox(height: 20, child: const CoinFlip()),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3.0),
+          child: Text(userBalance.toString()),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3.0),
+          child: Container(width: 20, child: Image.asset('token1.png')),
+        ),
       ],
     );
   }

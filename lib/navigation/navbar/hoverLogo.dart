@@ -25,15 +25,11 @@ class _HoverLogoState extends State<HoverLogo> {
 
   void startAnimate() {
     tick = Timer.periodic(
-      const Duration(milliseconds: 500),
+      const Duration(milliseconds: 3000),
       (timer) {
-        print(position);
+        // print(position);
         setState(() {
-          if (position < 6) {
-            position++;
-          } else {
-            position = 0;
-          }
+          position = finalPosition.nextInt(6);
         });
       },
     );
@@ -46,6 +42,7 @@ class _HoverLogoState extends State<HoverLogo> {
   @override
   void initState() {
     super.initState();
+    startAnimate();
 
     imageBlk = Image.asset('assets/hoverLogo/black.png');
   }
@@ -67,32 +64,22 @@ class _HoverLogoState extends State<HoverLogo> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      focusColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      onTap: () => widget.onTap(),
-      onHover: (hovering) {
-        // If NOT on homepage, run the hover trick. Else, ignore.
-        setState(() {
-          isHovering = hovering;
-        });
-        if (hovering) {
-          startAnimate();
-        } else {
-          stopAnimate();
-        }
-      },
-      child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          // If NOT on the home page, then do hover check
-          child:
-              //if hovering, do the animated logo else show just black
-              isHovering
-                  ? L2TLogo(position: position)
-                  : Container(width: 72, child: imageBlk)
-          // If home page, display L2T Logo at position
-          ),
-    );
+        focusColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        onTap: () => widget.onTap(),
+        onHover: (hovering) {
+          // If NOT on homepage, run the hover trick. Else, ignore.
+          setState(() {
+            isHovering = hovering;
+          });
+          if (!hovering) {
+            startAnimate();
+          } else {
+            stopAnimate();
+          }
+        },
+        child: L2TLogo(position: position));
   }
 }
 
