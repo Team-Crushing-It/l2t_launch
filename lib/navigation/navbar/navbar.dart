@@ -3,8 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_launch/authentication/authentication.dart';
 import 'package:l2t_launch/login/login.dart';
 import 'package:l2t_launch/login_flow/login_flow.dart';
+
 import 'package:l2t_launch/navigation/navbar/help/help_dropdown.dart';
 import 'package:l2t_launch/navigation/navbar/user_balance.dart';
+
+import 'coinflip.dart';
+
 
 import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
@@ -41,6 +45,7 @@ void onPressed() {
 class _NavBarViewState extends State<NavBarView> {
   @override
   Widget build(BuildContext context) {
+
     return
         // true
         widget.statusAuth == AuthenticationStatus.authenticated
@@ -102,6 +107,19 @@ class _NavBarViewState extends State<NavBarView> {
                     width: MediaQuery.of(context).size.width * 0.1,
                   ),
                 ],
+
+    return widget.statusAuth == AuthenticationStatus.authenticated
+        ? AppBar(
+            title: const Text('Auth'),
+            actions: <Widget>[
+              CoinFlip(),
+              IconButton(
+                key: const Key('homePage_logout_iconButton'),
+                icon: const Icon(Icons.exit_to_app),
+                onPressed: () => context
+                    .read<AuthenticationBloc>()
+                    .add(AuthenticationLogoutRequested()),
+
               )
             // UnAuthenticaed NavBar ====================================
             : AppBar(
