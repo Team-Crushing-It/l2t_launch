@@ -157,7 +157,7 @@ class _SignUpButton extends StatelessWidget {
         const Text("Don't have an account?"),
         TextButton(
           key: const Key('loginForm_createAccount_flatButton'),
-          onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
+          onPressed: () => Navigator.of(context).pushNamed('/signup'),
           child: Text(
             'CREATE ACCOUNT',
             style: TextStyle(color: context.theme.primaryColor),

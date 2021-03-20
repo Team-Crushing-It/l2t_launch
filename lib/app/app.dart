@@ -6,9 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:l2t_launch/authentication/authentication.dart';
+import 'package:l2t_launch/login/login.dart';
 import 'package:l2t_launch/navigation/cubit/navigation_cubit.dart';
 
 import 'package:l2t_launch/home/home.dart';
+import 'package:l2t_launch/sign_up/sign_up.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -53,23 +55,41 @@ class AppView extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      builder: (context, child) {
-        return FlowBuilder<NavigationState>(
-          state: context.select((NavigationCubit cubit) => cubit.state),
-          onGeneratePages: (NavigationState state, List<Page> pages) {
-            switch (state) {
-              case NavigationState.home:
-                return [Home.page()];
-              // case NavigationState.learn:
-              //   return [Learn.page()];
-              // case NavigationState.page2:
-              //   return [Page2.page()];
-              default:
-                return [Home.page()];
-            }
-          },
-        );
+      routes: {
+        '/': (context) => Home(),
+        '/login': (context) {
+          return BlocProvider(
+            create: (context) =>
+                LoginCubit(context.read<AuthenticationRepository>()),
+            child: LoginPage(),
+          );
+        },
+        '/signup': (context) {
+          return BlocProvider(
+            create: (context) =>
+                SignUpCubit(context.read<AuthenticationRepository>()),
+            child: const SignUpPage(),
+          );
+        },
       },
+      initialRoute: '/',
+      // builder: (context, child) {
+      //   return FlowBuilder<NavigationState>(
+      //     state: context.select((NavigationCubit cubit) => cubit.state),
+      //     onGeneratePages: (NavigationState state, List<Page> pages) {
+      //       switch (state) {
+      //         case NavigationState.home:
+      //           return [Home.page()];
+      //         // case NavigationState.learn:
+      //         //   return [Learn.page()];
+      //         // case NavigationState.page2:
+      //         //   return [Page2.page()];
+      //         default:
+      //           return [Home.page()];
+      //       }
+      //     },
+      //   );
+      // },
     );
   }
 }

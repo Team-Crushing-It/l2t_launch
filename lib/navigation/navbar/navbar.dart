@@ -96,16 +96,17 @@ class _NavBarViewState extends State<NavBarView> {
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
                   onPressed: () async {
-                    await Navigator.of(context).push<LoginState>(
-                      LoginFlow.route(),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text('Login Flow Complete!'),
-                        ),
-                      );
+                    // await Navigator.of(context).push<LoginState>(
+                    //   LoginFlow.route(),
+                    // );
+                    Navigator.of(context).pushNamed('/signup');
+                    // ScaffoldMessenger.of(context)
+                    //   ..hideCurrentSnackBar()
+                    //   ..showSnackBar(
+                    //     const SnackBar(
+                    //       content: Text('Login Flow Complete!'),
+                    //     ),
+                    //   );
                   },
                   child: const Text('Sign-up',
                       style: (TextStyle(color: Colors.white))),
@@ -115,16 +116,17 @@ class _NavBarViewState extends State<NavBarView> {
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(
                   onPressed: () async {
-                    await Navigator.of(context).push<LoginState>(
-                      LoginFlow.route(),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text('Login Flow Complete!'),
-                        ),
-                      );
+                    // await Navigator.of(context).push<LoginState>(
+                    //   LoginFlow.route(),
+                    // );
+                    Navigator.of(context).pushNamed('/login');
+                    // ScaffoldMessenger.of(context)
+                    //   ..hideCurrentSnackBar()
+                    //   ..showSnackBar(
+                    //     const SnackBar(
+                    //       content: Text('Login Flow Complete!'),
+                    //     ),
+                    //   );
                   },
                   child: const Text('Login',
                       style: (TextStyle(color: Colors.white))),
