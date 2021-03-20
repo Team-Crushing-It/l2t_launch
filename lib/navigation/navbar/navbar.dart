@@ -75,19 +75,19 @@ class _NavBarViewState extends State<NavBarView> {
                   ),
 
                   IconButton(
-                    icon: const Icon(Icons.help),
+                    icon: const Icon(Icons.live_help),
                     onPressed: () {
                       // Open help menu
                     },
                   ),
 
-                  IconButton(
-                    key: const Key('homePage_logout_iconButton'),
-                    icon: const Icon(Icons.exit_to_app),
-                    onPressed: () => context
-                        .read<AuthenticationBloc>()
-                        .add(AuthenticationLogoutRequested()),
-                  )
+                  // IconButton(
+                  //   key: const Key('homePage_logout_iconButton'),
+                  //   icon: const Icon(Icons.exit_to_app),
+                  //   onPressed: () => context
+                  //       .read<AuthenticationBloc>()
+                  //       .add(AuthenticationLogoutRequested()),
+                  // )
                 ],
               )
 
