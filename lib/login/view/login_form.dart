@@ -20,29 +20,24 @@ class LoginForm extends StatelessWidget {
             );
         }
       },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/logo.png',
-                height: 120,
-              ),
-              const SizedBox(height: 16.0),
-              _EmailInput(),
-              const SizedBox(height: 8.0),
-              _PasswordInput(),
-              const SizedBox(height: 8.0),
-              _LoginButton(),
-              const SizedBox(height: 8.0),
-              _GoogleLoginButton(),
-              const SizedBox(height: 4.0),
-              _SignUpButton(),
-            ],
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'assets/logo.png',
+            height: 120,
           ),
-        ),
+          const SizedBox(height: 16.0),
+          _EmailInput(),
+          const SizedBox(height: 8.0),
+          _PasswordInput(),
+          const SizedBox(height: 16.0),
+          _LoginButton(),
+          const SizedBox(height: 16.0),
+          _GoogleLoginButton(),
+          const SizedBox(height: 32.0),
+          _SignUpButton(),
+        ],
       ),
     );
   }
@@ -100,22 +95,26 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('loginForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+            : SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  key: const Key('loginForm_continue_raisedButton'),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(18.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    primary: const Color(0xFFFFD600),
                   ),
-                  primary: const Color(0xFFFFD600),
+                  onPressed: state.status.isValidated
+                      ? () {
+                          context
+                              .read<LoginCubit>()
+                              .logInWithCredentials(context);
+                        }
+                      : null,
+                  child: const Text('LOGIN'),
                 ),
-                onPressed: state.status.isValidated
-                    ? () {
-                        context
-                            .read<LoginCubit>()
-                            .logInWithCredentials(context);
-                      }
-                    : null,
-                child: const Text('LOGIN'),
               );
       },
     );
@@ -125,19 +124,27 @@ class _LoginButton extends StatelessWidget {
 class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      key: const Key('loginForm_googleLogin_raisedButton'),
-      label: const Text(
-        'SIGN IN WITH GOOGLE',
-        style: TextStyle(color: Colors.white),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        key: const Key('loginForm_googleLogin_raisedButton'),
+        label: const Text(
+          'LOGIN WITH GOOGLE',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: const Icon(
+          FontAwesomeIcons.google,
+          color: Colors.white,
+          size: 20,
+        ),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(16.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+          primary: context.theme.accentColor,
+        ),
+        onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
       ),
-      icon: const Icon(FontAwesomeIcons.google, color: Colors.white),
-      style: ElevatedButton.styleFrom(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        primary: context.theme.accentColor,
-      ),
-      onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
     );
   }
 }
@@ -145,13 +152,18 @@ class _GoogleLoginButton extends StatelessWidget {
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      key: const Key('loginForm_createAccount_flatButton'),
-      onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
-      child: Text(
-        'CREATE ACCOUNT',
-        style: TextStyle(color: context.theme.primaryColor),
-      ),
+    return Column(
+      children: [
+        const Text("Don't have an account?"),
+        TextButton(
+          key: const Key('loginForm_createAccount_flatButton'),
+          onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
+          child: Text(
+            'CREATE ACCOUNT',
+            style: TextStyle(color: context.theme.primaryColor),
+          ),
+        ),
+      ],
     );
   }
 }
