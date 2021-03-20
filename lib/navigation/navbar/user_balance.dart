@@ -10,7 +10,10 @@ class UserBalance extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
-          child: Text(userBalance.toString()),
+          child: Text(
+            userBalance.toString(),
+            style: const TextStyle(color: Colors.black),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
