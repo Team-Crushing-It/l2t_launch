@@ -3,7 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:l2t_launch/authentication/authentication.dart';
 import 'package:l2t_launch/login/login.dart';
 import 'package:l2t_launch/login_flow/login_flow.dart';
+
+import 'package:l2t_launch/navigation/navbar/help/help_dropdown.dart';
+import 'package:l2t_launch/navigation/navbar/user_balance.dart';
+
 import 'coinflip.dart';
+
 
 import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
@@ -40,6 +45,69 @@ void onPressed() {
 class _NavBarViewState extends State<NavBarView> {
   @override
   Widget build(BuildContext context) {
+
+    return
+        // true
+        widget.statusAuth == AuthenticationStatus.authenticated
+            ? AppBar(
+                title: Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.1),
+                  child: HoverLogo(
+                    onTap: () => context.read<NavigationCubit>().home(),
+                    visible:
+                        // ignore: avoid_bool_literals_in_conditional_expressions
+                        widget.stateNav == NavigationState.home ? false : true,
+                  ),
+                ),
+                actions: <Widget>[
+                  //? Can anyone get this working?
+                  // HelpDropdown(),
+                  IconButton(
+                    icon: const Icon(Icons.person),
+                    onPressed: () {
+                      // Open user profile page
+                    },
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  const UserBalance(3),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.inbox),
+                    onPressed: () {
+                      // Open inbox dropdown
+                    },
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.star),
+                    onPressed: () {
+                      // Open help menu
+                    },
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.help),
+                    onPressed: () {
+                      // Open help menu
+                    },
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                ],
+
     return widget.statusAuth == AuthenticationStatus.authenticated
         ? AppBar(
             title: const Text('Auth'),
@@ -51,62 +119,49 @@ class _NavBarViewState extends State<NavBarView> {
                 onPressed: () => context
                     .read<AuthenticationBloc>()
                     .add(AuthenticationLogoutRequested()),
+
               )
-            ],
-          )
-        // UnAuthenticaed NavBar ====================================
-        : AppBar(
-            title: Row(
-              children: [
-                HoverLogo(
+            // UnAuthenticaed NavBar ====================================
+            : AppBar(
+                title: HoverLogo(
                   onTap: () => context.read<NavigationCubit>().home(),
                   visible:
                       // ignore: avoid_bool_literals_in_conditional_expressions
                       widget.stateNav == NavigationState.home ? false : true,
                 ),
-              ],
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () async {
-                    await Navigator.of(context).push<LoginState>(
-                      LoginFlow.route(),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text('Login Flow Complete!'),
-                        ),
-                      );
-                  },
-                  child: const Text('Sign-up',
-                      style: (TextStyle(color: Colors.white))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () async {
-                    await Navigator.of(context).push<LoginState>(
-                      LoginFlow.route(),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text('Login Flow Complete!'),
-                        ),
-                      );
-                  },
-                  child: const Text('Login',
-                      style: (TextStyle(color: Colors.white))),
-                ),
-              ),
-            ],
-          );
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue,
+                      ),
+                      onPressed: () async {
+                        Navigator.of(context).pushNamed('/login');
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                      ),
+                      onPressed: () async {
+                        Navigator.of(context).pushNamed('/signup');
+                      },
+                      child: const Text(
+                        'Sign-up',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              );
 
     // AppBar(
     //   actions: [
