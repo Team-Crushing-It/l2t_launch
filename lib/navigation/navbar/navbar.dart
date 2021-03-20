@@ -9,7 +9,6 @@ import 'package:l2t_launch/navigation/navbar/user_balance.dart';
 
 import 'coinflip.dart';
 
-
 import './hoverLogo.dart';
 import '../cubit/navigation_cubit.dart';
 
@@ -45,7 +44,6 @@ void onPressed() {
 class _NavBarViewState extends State<NavBarView> {
   @override
   Widget build(BuildContext context) {
-
     return
         // true
         widget.statusAuth == AuthenticationStatus.authenticated
@@ -106,21 +104,17 @@ class _NavBarViewState extends State<NavBarView> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.1,
                   ),
+
+                  IconButton(
+                    key: const Key('homePage_logout_iconButton'),
+                    icon: const Icon(Icons.exit_to_app),
+                    onPressed: () => context
+                        .read<AuthenticationBloc>()
+                        .add(AuthenticationLogoutRequested()),
+                  )
                 ],
-
-    return widget.statusAuth == AuthenticationStatus.authenticated
-        ? AppBar(
-            title: const Text('Auth'),
-            actions: <Widget>[
-              CoinFlip(),
-              IconButton(
-                key: const Key('homePage_logout_iconButton'),
-                icon: const Icon(Icons.exit_to_app),
-                onPressed: () => context
-                    .read<AuthenticationBloc>()
-                    .add(AuthenticationLogoutRequested()),
-
               )
+
             // UnAuthenticaed NavBar ====================================
             : AppBar(
                 title: HoverLogo(
@@ -162,55 +156,5 @@ class _NavBarViewState extends State<NavBarView> {
                   ),
                 ],
               );
-
-    // AppBar(
-    //   actions: [
-    // IconButton(
-    //   color: widget.stateNav == NavigationState.home
-    //       ? Colors.red
-    //       : Colors.black,
-    //   icon: const Icon(Icons.home_outlined),
-    //   onPressed: () => {
-    //     context.read<NavigationCubit>().home(),
-    //   },
-    // ),
-    // IconButton(
-    //   color: widget.stateNav == NavigationState.page1
-    //       ? Colors.red
-    //       : Colors.black,
-    //   icon: const Icon(Icons.access_alarm_outlined),
-    //   onPressed: () => {
-    //     context.read<NavigationCubit>().page1(),
-    //   },
-    // ),
-    // IconButton(
-    //   color: widget.stateNav == NavigationState.page2
-    //       ? Colors.red
-    //       : Colors.black,
-    //   icon: const Icon(Icons.ac_unit_outlined),
-    //   onPressed: () => {
-    //     context.read<NavigationCubit>().page2(),
-    //   },
-    // ),
-    //     widget.statusAuth == AuthenticationStatus.unauthenticated
-    //         ? Padding(
-    //             padding: const EdgeInsets.all(8.0),
-    //             child: OutlinedButton(
-    //                 child: const Text('Sign-up',
-    //                     style: (TextStyle(color: Colors.white))),
-    //                 onPressed: () {}),
-    //           )
-    //         : Container(),
-    //     widget.statusAuth == AuthenticationStatus.unauthenticated
-    //         ? Padding(
-    //             padding: const EdgeInsets.all(8.0),
-    //             child: OutlinedButton(
-    //                 child: const Text('login',
-    //                     style: (TextStyle(color: Colors.white))),
-    //                 onPressed: () {}),
-    //           )
-    //         : Container()
-    //   ],
-    // );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'coinflip.dart';
 
 class UserBalance extends StatelessWidget {
   const UserBalance(this.userBalance);
@@ -8,7 +9,7 @@ class UserBalance extends StatelessWidget {
     return Row(
       children: [
         Text(userBalance.toString()),
-        const Icon(Icons.wallet_giftcard),
+        SizedBox(height: 20, child: const CoinFlip()),
       ],
     );
   }
