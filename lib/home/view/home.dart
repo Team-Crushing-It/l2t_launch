@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:l2t_launch/authentication/authentication.dart';
-import 'package:l2t_launch/home/home.dart';
+
+import '../../authentication/authentication.dart';
+import '../home.dart';
 
 class Home extends StatelessWidget {
   static Page page() => MaterialPage<void>(child: Home());

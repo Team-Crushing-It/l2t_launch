@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'coinflip.dart';
 
 class UserBalance extends StatelessWidget {
   const UserBalance(this.userBalance);
@@ -14,7 +13,7 @@ class UserBalance extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
-          child: Container(width: 20, child: Image.asset('token1.png')),
+          child: SizedBox(width: 20, child: Image.asset('token1.png')),
         ),
       ],
     );

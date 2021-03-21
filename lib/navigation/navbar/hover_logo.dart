@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 class HoverLogo extends StatefulWidget {
-  HoverLogo({
+  const HoverLogo({
     Key? key,
     required this.onTap,
     required this.visible,
@@ -20,8 +21,8 @@ class _HoverLogoState extends State<HoverLogo> {
   Timer? tick;
   bool isHovering = false;
   Image? imageBlk;
-  var position = 0;
-  var finalPosition = Random();
+  int position = 0;
+  Random finalPosition = Random();
 
   void startAnimate() {
     tick = Timer.periodic(
@@ -86,20 +87,20 @@ class _HoverLogoState extends State<HoverLogo> {
 class L2TLogo extends StatefulWidget {
   const L2TLogo({Key? key, required this.position}) : super(key: key);
 
-  final int? position;
+  final int position;
   @override
   _L2TLogoState createState() => _L2TLogoState();
 }
 
 class _L2TLogoState extends State<L2TLogo> {
-  Image? image1;
-  Image? image2;
-  Image? image3;
-  Image? image4;
-  Image? image5;
-  Image? image6;
-  Image? image7;
-  var images;
+  late Image image1;
+  late Image image2;
+  late Image image3;
+  late Image image4;
+  late Image image5;
+  late Image image6;
+  late Image image7;
+  late List<Image> images;
 
   @override
   void initState() {
@@ -128,18 +129,18 @@ class _L2TLogoState extends State<L2TLogo> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    precacheImage(image1!.image, context);
-    precacheImage(image2!.image, context);
-    precacheImage(image3!.image, context);
-    precacheImage(image4!.image, context);
-    precacheImage(image5!.image, context);
-    precacheImage(image6!.image, context);
-    precacheImage(image7!.image, context);
+    precacheImage(image1.image, context);
+    precacheImage(image2.image, context);
+    precacheImage(image3.image, context);
+    precacheImage(image4.image, context);
+    precacheImage(image5.image, context);
+    precacheImage(image6.image, context);
+    precacheImage(image7.image, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 72,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),

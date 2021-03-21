@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:l2t_launch/l10n/l10n.dart';
-import 'package:flow_builder/flow_builder.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:l2t_launch/authentication/authentication.dart';
-import 'package:l2t_launch/login/login.dart';
-import 'package:l2t_launch/navigation/cubit/navigation_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:l2t_launch/home/home.dart';
-import 'package:l2t_launch/sign_up/sign_up.dart';
+import '../authentication/authentication.dart';
+import '../home/home.dart';
+import '../l10n/l10n.dart';
+import '../login/login.dart';
+import '../navigation/cubit/navigation_cubit.dart';
+import '../sign_up/sign_up.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -50,7 +48,7 @@ class AppView extends StatelessWidget {
         accentColor: const Color(0xFF13B9FF),
         appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
       ),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],

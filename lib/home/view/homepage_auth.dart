@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:l2t_launch/navigation/navbar/navbar.dart';
-import 'package:l2t_launch/authentication/authentication.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../authentication/authentication.dart';
+import '../../navigation/navbar/navbar.dart';
 
 class HomePageAuth extends StatelessWidget {
   static Page page() => MaterialPage<void>(child: HomePageAuth());
