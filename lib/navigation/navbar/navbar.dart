@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:l2t_launch/authentication/authentication.dart';
+import 'package:l2t_launch/login/login.dart';
+import 'package:l2t_launch/login_flow/login_flow.dart';
 
-import '../../authentication/authentication.dart';
-import '../cubit/navigation_cubit.dart';
-import 'help/help_dropdown.dart';
-import 'hover_logo.dart';
+import 'package:l2t_launch/navigation/navbar/help/help_dropdown.dart';
+import 'package:l2t_launch/navigation/navbar/user_balance.dart';
+
 import 'user_info.dart';
+
+import './hoverLogo.dart';
+import '../cubit/navigation_cubit.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -15,7 +20,13 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final stateNav = context.watch<NavigationCubit>().state;
     final stateAuth = context.watch<AuthenticationBloc>().state.status;
-    return NavBarView(stateNav: stateNav, statusAuth: stateAuth);
+    return Theme(
+        data: ThemeData(
+          appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+        ),
+        child: NavBarView(stateNav: stateNav, statusAuth: stateAuth));
   }
 }
 
@@ -33,7 +44,7 @@ class NavBarView extends StatefulWidget {
 }
 
 void onPressed() {
-  debugPrint('pressed');
+  print('pressed');
 }
 
 class _NavBarViewState extends State<NavBarView> {
@@ -43,6 +54,7 @@ class _NavBarViewState extends State<NavBarView> {
         // true
         widget.statusAuth == AuthenticationStatus.authenticated
             ? AppBar(
+                backgroundColor: const Color(0xffFFD700),
                 title: HoverLogo(
                   onTap: () => {},
                   visible: true,
@@ -70,24 +82,25 @@ class _NavBarViewState extends State<NavBarView> {
                   ),
 
                   IconButton(
-                    icon: const Icon(Icons.live_help),
+                    icon: const Icon(Icons.help),
                     onPressed: () {
                       // Open help menu
                     },
                   ),
 
-                  // IconButton(
-                  //   key: const Key('homePage_logout_iconButton'),
-                  //   icon: const Icon(Icons.exit_to_app),
-                  //   onPressed: () => context
-                  //       .read<AuthenticationBloc>()
-                  //       .add(AuthenticationLogoutRequested()),
-                  // )
+                  IconButton(
+                    key: const Key('homePage_logout_iconButton'),
+                    icon: const Icon(Icons.exit_to_app),
+                    onPressed: () => context
+                        .read<AuthenticationBloc>()
+                        .add(AuthenticationLogoutRequested()),
+                  )
                 ],
               )
 
             // UnAuthenticaed NavBar ====================================
             : AppBar(
+                backgroundColor: const Color(0xffFFD700),
                 title: HoverLogo(
                   onTap: () => {},
                   visible: true,

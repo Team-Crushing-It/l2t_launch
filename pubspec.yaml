@@ -11,10 +11,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
   authentication_repository:
     path: packages/authentication_repository
   bloc: ^7.0.0
+  cloud_firestore: ^1.0.1
   flow_builder: ^0.0.1
   flutter_bloc: ^7.0.0
   flutter_markdown: ^0.6.0

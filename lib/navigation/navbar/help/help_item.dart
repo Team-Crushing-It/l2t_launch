@@ -21,23 +21,5 @@ class HelpWidget extends StatelessWidget {
         ),
       ),
     );
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            helpItem.title ?? '',
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1
-                ?.copyWith(color: Colors.white),
-          ),
-          Text(
-            helpItem.subtitle ?? '',
-          ),
-        ],
-      ),
-    );
   }
 }
