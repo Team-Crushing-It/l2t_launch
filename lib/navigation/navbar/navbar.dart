@@ -20,7 +20,13 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final stateNav = context.watch<NavigationCubit>().state;
     final stateAuth = context.watch<AuthenticationBloc>().state.status;
-    return NavBarView(stateNav: stateNav, statusAuth: stateAuth);
+    return Theme(
+        data: ThemeData(
+          appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+        ),
+        child: NavBarView(stateNav: stateNav, statusAuth: stateAuth));
   }
 }
 
@@ -48,6 +54,7 @@ class _NavBarViewState extends State<NavBarView> {
         // true
         widget.statusAuth == AuthenticationStatus.authenticated
             ? AppBar(
+                backgroundColor: const Color(0xffFFD700),
                 title: HoverLogo(
                   onTap: () => {},
                   visible: true,
@@ -93,6 +100,7 @@ class _NavBarViewState extends State<NavBarView> {
 
             // UnAuthenticaed NavBar ====================================
             : AppBar(
+                backgroundColor: const Color(0xffFFD700),
                 title: HoverLogo(
                   onTap: () => {},
                   visible: true,

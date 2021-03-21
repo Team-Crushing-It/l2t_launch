@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:l2t_launch/app/app.dart';
@@ -12,6 +13,8 @@ void main() {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
+
+  final firebaseFirestore = FirebaseFirestore.instance;
 
   runZonedGuarded(
     () => runApp(App(authenticationRepository: AuthenticationRepository())),

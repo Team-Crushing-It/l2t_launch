@@ -1,6 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:l2t_launch/authentication/bloc/authentication_bloc.dart';
 
 import '../sign_up.dart';
 
@@ -13,18 +15,32 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Sign Up')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: 600),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 64.0, vertical: 64.0),
-              color: Colors.grey[200],
-              child: SignUpForm(),
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) async {
+        // Once authenticated, we want to pop the screen back to the home page
+        if (state.status == AuthenticationStatus.authenticated) {
+          // User user = await context.read<AuthenticationRepository>().user.first;
+          // FirebaseFirestore.instance.collection('users').doc(user.id).set({
+          //   'first_name': 'Test2',
+          //   'last_name': 'Test2',
+          //   'balance': 12,
+          // });
+          Navigator.of(context).pop();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Sign Up')),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 64.0, vertical: 64.0),
+                color: Colors.grey[200],
+                child: SignUpForm(),
+              ),
             ),
           ),
         ),
