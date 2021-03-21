@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:l2t_launch/authentication/authentication.dart';
-import 'package:l2t_launch/login/login.dart';
-import 'package:l2t_launch/login_flow/login_flow.dart';
 
-import 'package:l2t_launch/navigation/navbar/help/help_dropdown.dart';
-import 'package:l2t_launch/navigation/navbar/user_balance.dart';
-
-import 'user_info.dart';
-
-import './hoverLogo.dart';
+import '../../authentication/authentication.dart';
 import '../cubit/navigation_cubit.dart';
+import './hoverLogo.dart';
+import 'help/help_dropdown.dart';
+import 'user_info.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   @override

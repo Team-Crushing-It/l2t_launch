@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-import '../login/login.dart';
-import '../login/view/login_page.dart';
+import '../../login/login.dart';
+import '../../login/view/login_page.dart';
 
 class LoginFlow extends StatelessWidget {
   static Route<LoginState> route() {

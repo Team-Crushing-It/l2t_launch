@@ -1,19 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:l2t_launch/l10n/l10n.dart';
-import 'package:flow_builder/flow_builder.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:l2t_launch/authentication/authentication.dart';
-import 'package:l2t_launch/login/login.dart';
-import 'package:l2t_launch/navigation/cubit/navigation_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flow_builder/flow_builder.dart';
 
-import 'package:l2t_launch/home/home.dart';
-import 'package:l2t_launch/sign_up/sign_up.dart';
-import 'package:l2t_launch/user/cubit/user_info_cubit.dart';
+import '../authentication/authentication.dart';
+import '../home/home.dart';
+import '../l10n/l10n.dart';
+import '../login/login.dart';
+import '../navigation/cubit/navigation_cubit.dart';
+import '../sign_up/sign_up.dart';
+import '../user/cubit/user_info_cubit.dart';
 
 class App extends StatelessWidget {
   const App({

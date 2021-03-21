@@ -4,8 +4,8 @@ import 'coinflip.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserBalance extends StatelessWidget {
-  const UserBalance(this.userBalance);
-  final int userBalance;
+  // const UserBalance(this.userBalance);
+  // final int userBalance;
   @override
   Widget build(BuildContext context) {
     return Row(

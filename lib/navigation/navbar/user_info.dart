@@ -11,9 +11,9 @@ class UserInfo extends StatelessWidget {
           padding: const EdgeInsets.all(2.0),
           child: UserIcon(),
         ),
-        const Padding(
-          padding: EdgeInsets.all(2.0),
-          child: UserBalance(3),
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: UserBalance(),
         ),
       ],
     );
